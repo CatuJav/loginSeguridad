@@ -1,26 +1,13 @@
 import React from 'react';
 import './theme/style.css';
 import logo from './theme/google.png';
-import { createStyles, makeStyles, Theme } from '@material-ui/core/styles';
 import TextField from '@material-ui/core/TextField';
 
-const useStyles = makeStyles((theme: Theme) =>
-  createStyles({
-    root: {
-      '& > *': {
-        margin: theme.spacing(1),
-        width: '25ch',
-      },
-    },
-    margin: {
-      margin: theme.spacing(1),
-    },
-  }),
-);
+
 
 
 function App() {
-  const classes = useStyles();
+  
   return (
     
     <div className="maindiv" style={{ width:448, height:550}}>
