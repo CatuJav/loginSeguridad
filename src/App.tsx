@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import './theme/style.css';
 import logo from './theme/google.png';
 import TextField from '@material-ui/core/TextField';
@@ -17,7 +17,7 @@ function App() {
 
   const guardarContador=async()=>{
     let {docs}= await db.collection('contador').get();
-    if (docs.length==0) {
+    if (docs.length===0) {
       await db.collection('contador').add({
         cantidadFire:0
       });
@@ -36,7 +36,7 @@ function App() {
     let datosContador:Contador={
       cantidadFire:cantidad
     }
-    await db.collection('contador').doc(idDoc).set({...datosContador,cantidadFire:cantidad,algo:cantidad});
+    await db.collection('contador').doc(idDoc).set({...datosContador,cantidadFire:cantidad});
   }
 
   return (
