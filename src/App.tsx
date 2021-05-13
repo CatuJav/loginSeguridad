@@ -12,7 +12,7 @@ function App() {
     
     <div className="maindiv" style={{ width:448, height:550}}>
      <img src={logo} alt="Google"/>
-     <h1 style={{fontWeight:'bold',marginTop:20, marginBottom:15}}>Hola sesión</h1>
+     <h1 style={{fontWeight:'bold',marginTop:20, marginBottom:15}}>Iniciar sesión</h1>
      <h3>Utiliza tu cuenta de Google</h3>
      <form action="">
      <div className="inputs" style={{marginTop:20}}>
