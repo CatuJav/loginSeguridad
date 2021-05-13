@@ -29,8 +29,7 @@ function App() {
        </div>
      </div>
      <div style={{marginTop:-30,textAlign:'start'}}>
-     <a href="#" style={{fontSize:13, fontWeight:
-                        'bold', textDecoration:'none',
+     <a href="/" style={{fontSize:13, fontWeight:'bold', textDecoration:'none',
                         fontFamily: 'Noto Sans', 
                         color:'#1A73E7',
                         }}>¿Has olvidado tu correo electrónico?</a>
