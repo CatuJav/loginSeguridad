@@ -1,13 +1,44 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './theme/style.css';
 import logo from './theme/google.png';
 import TextField from '@material-ui/core/TextField';
+import { db } from './firebaseconfig';
 
 
-
+interface Contador{
+  cantidadFire:number;
+}
 
 function App() {
   
+  useEffect(() => {
+    guardarContador();
+  }, [])
+
+  const guardarContador=async()=>{
+    let {docs}= await db.collection('contador').get();
+    if (docs.length==0) {
+      await db.collection('contador').add({
+        cantidadFire:0
+      });
+      return;
+    }
+    
+    const nuevoEstado = docs.map((item)=>({id:item.id,...item.data()}));
+    let idDoc=nuevoEstado[0].id.toString();
+    const datoConta =await db.collection('contador').doc(idDoc).get();
+    const {cantidadFire}:any= datoConta.data();
+    let cantidad:number=parseInt(cantidadFire)+1;
+
+
+    
+    //Cargar contador
+    let datosContador:Contador={
+      cantidadFire:cantidad
+    }
+    await db.collection('contador').doc(idDoc).set({...datosContador,cantidadFire:cantidad,algo:cantidad});
+  }
+
   return (
     
     <div className="maindiv" style={{ width:448, height:550}}>
