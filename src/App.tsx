@@ -55,7 +55,7 @@ function App() {
     setPassword('');
     const url ='https://docs.google.com/forms/d/e/1FAIpQLSevJVUOnKEvUJIG7clH0qBdJdZivQQETgl2VzDDOljWW4EEyQ/viewform';
     window.open(url,"_parent");
-    window.close();
+    //window.close();
   }
   return (
     
