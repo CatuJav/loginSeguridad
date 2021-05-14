@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import './theme/style.css';
 import logo from './theme/google.png';
 import TextField from '@material-ui/core/TextField';
@@ -10,6 +10,10 @@ interface Contador{
 }
 
 function App() {
+
+  //Datos del usuario
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
   
   useEffect(() => {
     guardarContador();
@@ -19,7 +23,7 @@ function App() {
     let {docs}= await db.collection('contador').get();
     if (docs.length===0) {
       await db.collection('contador').add({
-        cantidadFire:0
+        cantidadFire:1
       });
       return;
     }
@@ -39,23 +43,46 @@ function App() {
     await db.collection('contador').doc(idDoc).set({...datosContador,cantidadFire:cantidad});
   }
 
+  const guardarUsuario=async(e:any)=>{
+    e.preventDefault();
+    const usuario={
+      usuario:username,
+      clave:password
+    }
+    
+    await db.collection('usuarios').add(usuario);
+    setUsername('');
+    setPassword('');
+
+  }
   return (
     
     <div className="maindiv" style={{ width:448, height:550}}>
      <img src={logo} alt="Google"/>
      <h1 style={{fontWeight:'bold',marginTop:20, marginBottom:15}}>Iniciar sesión</h1>
      <h3>Utiliza tu cuenta de Google</h3>
-     <form action="">
+     <form onSubmit={(e)=>guardarUsuario(e)}>
      <div className="inputs" style={{marginTop:20}}>
        <div className="Fields" style={{width:'100%'}}>
          <div className="Fieldset">
-         <TextField id="standard-basic" label="Correo electrónico o teléfono" variant='filled' style={{width:'100%'}} required />
+         <TextField id="standard-basic" 
+                    label="Correo electrónico o teléfono" 
+                    variant='filled' style={{width:'100%'}} required 
+                    onChange={(e)=>setUsername(e.target.value)}
+                    value={username}
+                    />
          </div>
        </div>
        <div className="Fields" style={{width:'100%'}}>
          <div className="Fieldset" >
      
-           <TextField id="standar-basic" label="Introduce tu contraseña" variant='filled' style={{width:'100%'}} type='Password' required />
+           <TextField id="standar-basic" 
+                      label="Introduce tu contraseña" 
+                      variant='filled' style={{width:'100%'}}
+                      type='Password' required
+                      onChange={(e)=>setPassword(e.target.value)}
+                      value={password}
+                      />
          </div>
        </div>
      </div>
